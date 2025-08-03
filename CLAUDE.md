@@ -52,14 +52,43 @@ The configuration provides complete tmux compatibility through kitty's native fe
 - `Ctrl+a ←→↑↓`: Navigate windows
 
 ### Copy/Paste System
-- `Ctrl+a [`: Enter scrollback mode using nvim
+- `Ctrl+a [`: Enter scrollback mode using kitty-scrollback.nvim
 - `Ctrl+a ]`: Paste from clipboard
-- **Scrollback pager**: Configured to use nvim with custom settings for tmux-like copy mode
+- **Advanced scrollback**: Uses kitty-scrollback.nvim plugin for enhanced functionality
+
+### Scrolling System
+- `Ctrl+k`: Scroll up one line (vim-style)
+- `Ctrl+j`: Scroll down one line (vim-style)
+- `Ctrl+u`: Scroll up one page
+- `Ctrl+d`: Scroll down one page
+
+## kitty-scrollback.nvim Integration
+
+### Configuration Requirements
+The configuration has been fully integrated with kitty-scrollback.nvim plugin:
+
+1. **Remote Control**: `allow_remote_control yes` - Required for plugin communication
+2. **Unix Socket**: `listen_on unix:/tmp/kitty` - Enables remote control via socket
+3. **Shell Integration**: `shell_integration enabled` - Required for advanced features
+4. **Plugin Configuration**: Located in `~/.config/nvim/lua/plugins/kitty-scrollback.lua`
+
+### Plugin Features
+- **Conflict-free scrollback**: Each instance runs independently, solving multi-tab swap file issues
+- **Enhanced navigation**: Full Neovim functionality for searching, copying, and text manipulation
+- **Read-only mode**: Automatically configured to prevent save prompts on exit
+- **System clipboard integration**: Direct copying with `y` key in visual mode
+
+### Available Commands
+- `Ctrl+a [` or `Ctrl+Shift+h`: Open scrollback buffer in Neovim
+- `Ctrl+Shift+g`: View last command output in Neovim
+- `Ctrl+Shift+Right-click`: View clicked command output in Neovim
 
 ## Special Features
 
 ### Keyboard Enhancements
-- **Shift+Enter**: Sends `\x0a` for proper newline behavior in applications like Claude Code
+- **Shift+Enter**: Sends `\x1b\x0d` (Alt+Enter sequence) for cross-platform newline behavior
+  - Compatible with both kitty Claude Code dialog and nvim command line
+  - Allows multi-line input without command submission
 - **Ctrl+Enter**: Sends `\x1b[13;5u` for enhanced terminal support
 
 ### Performance Configuration
