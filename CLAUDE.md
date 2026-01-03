@@ -96,6 +96,12 @@ The configuration has been fully integrated with kitty-scrollback.nvim plugin:
 - **Zero latency**: Input and repaint delays set to 0
 - **Layout system**: Multiple built-in layouts (tall, stack, fat, grid, horizontal, vertical, splits)
 
+## Session Management
+
+Kitty does not have native session persistence like tmux. When kitty crashes or is closed, the window layout and tabs are lost.
+
+**Recommendation**: Use tmux for proper session management and crash recovery. Tmux maintains sessions in the background and can restore them after a crash or unexpected close.
+
 ## Theme and Appearance
 
 ### Current Theme
